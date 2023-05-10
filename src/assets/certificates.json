@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Programação em Python do básico ao avançado",
+        "link": "https://www.udemy.com/certificate/UC-61b9bc8f-f652-4f5a-a950-f86088cfb744/",
+        "imageLink": "https://udemy-certificate.s3.amazonaws.com/image/UC-61b9bc8f-f652-4f5a-a950-f86088cfb744.jpg"
+    },
+    {
+        "name": "Desenvolvimento Web Completo 2023",
+        "link": "https://www.udemy.com/certificate/UC-14ccadda-52d4-4dc2-b45f-d08d58a2deaa/",
+        "imageLink": "https://udemy-certificate.s3.amazonaws.com/image/UC-14ccadda-52d4-4dc2-b45f-d08d58a2deaa.jpg"
+    },
+    {
+        "name": "FastAPI - APIs Modernas e Assíncronas com Python",
+        "link": "https://www.udemy.com/certificate/UC-a5908e34-91d5-4582-8105-0e5167f56a10/",
+        "imageLink": "https://udemy-certificate.s3.amazonaws.com/image/UC-a5908e34-91d5-4582-8105-0e5167f56a10.jpg"
+    }
+]
