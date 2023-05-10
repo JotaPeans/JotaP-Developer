@@ -386,6 +386,32 @@ const App = () => {
                 </div>
             </section>
 
+            <section id="projetos" className="flex flex-col md:items-center gap-8 mt-10 p-2">
+                <div className=" xl:w-[60%]">
+                    <header className="relative flex items-center">
+                        <CgMenuGridO className="text-5xl text-gray-500/30"/>
+                        <h1 className="absolute left-5 top-4 font-semibold text-4xl">Projetos</h1>
+                    </header>
+                    
+                    <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
+                        Projetos aqui
+                    </main>
+                </div>
+            </section>
+
+            <section id="contato" className="flex flex-col md:items-center gap-8 mt-10 p-2">
+                <div className=" xl:w-[60%]">
+                    <header className="relative flex items-center">
+                        <CgMenuGridO className="text-5xl text-gray-500/30"/>
+                        <h1 className="absolute left-5 top-4 font-semibold text-4xl">Contato</h1>
+                    </header>
+                    
+                    <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
+                        Contato aqui
+                    </main>
+                </div>
+            </section>
+
             <footer className="mt-10 bg-slate-600/60 p-5">
                 <p className="text-center">© 2023 Desenvolvido por <a className=" font-semibold underline" href="https://jpdeveloper.vercel.app/">jpdeveloper</a></p>
             </footer>
