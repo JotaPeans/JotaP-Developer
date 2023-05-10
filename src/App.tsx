@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-scroll";
 import calculateTime from "./assets/functions/calcTime";
-import curriculo from "./assets/files/curriculo.pdf";
 import certificates from "./assets/certificates.json";
 
 //icons
@@ -243,7 +242,7 @@ const App = () => {
                             </p>
 
                             <div className="flex justify-center items-center">
-                                <a className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2 text-white" href={curriculo} download="curriculo.pdf">Download CV</a>
+                                <a className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2 text-white" target="_blank" href="https://drive.google.com/file/d/11mCjwinsyl5CWQkssoiSoP0cjY8QgAJr/view" >Download CV</a>
                             </div>
                         </div>
                     </main>
