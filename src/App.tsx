@@ -94,7 +94,7 @@ const App = () => {
                                 duration={500}
                                 className={`cursor-pointer ${activeSection === "servicos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
                             >
-                                servicos
+                                Serviços
                             </Link>
 
                             <Link 
@@ -105,7 +105,7 @@ const App = () => {
                                 duration={500} 
                                 className={`cursor-pointer ${activeSection === "certificados" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
                             >
-                                certificados
+                                Certificados
                             </Link>         
 
                             <Link 
@@ -172,7 +172,7 @@ const App = () => {
                     duration={500}
                     className={`cursor-pointer ${activeSection === "servicos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
                 >
-                    servicos
+                    Serviços
                 </Link>
                 
                 <Link
@@ -186,7 +186,7 @@ const App = () => {
                     duration={500}
                     className={`cursor-pointer ${activeSection === "certificados" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
                 >
-                    certificados
+                    Certificados
                 </Link> 
                 
                 <Link
