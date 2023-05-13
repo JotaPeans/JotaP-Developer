@@ -7,7 +7,6 @@ import certificates from "./assets/certificates.json";
 import { Tb3DCubeSphere } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
-import { BsLinkedin } from "react-icons/bs";
 import { TfiMouse } from "react-icons/tfi";
 import { CgMenuGridO } from "react-icons/cg";
 import { BiCodeBlock } from "react-icons/bi";
@@ -18,6 +17,7 @@ import { DiTerminal } from "react-icons/di";
 //images
 import photo1 from "./assets/images/photo1.png";
 import photo2 from "./assets/images/photo2.png";
+import lavateriapay from "./assets/images/lavateriapay.png";
 
 const App = () => {
     const [ nav, setNav ] = useState(false);
@@ -36,7 +36,7 @@ const App = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => write("FullStack Web Developer"));
+        setTimeout(() => write("FullStack Developer"));
         setInterval(() => {
             let { hours, minutes, seconds } = calculateTime();
             hourRef.current!.textContent = hours < 10 ? "0" + hours.toString() : hours.toString();
@@ -47,12 +47,11 @@ const App = () => {
 
     return (
         <main className="relative w-screen min-h-screen h-full bg-pastelViolet text-white">
-            <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-5559221a5/" target="_blank" className="z-10 fixed bottom-4 right-4 flex justify-center items-center animate-bounceLite rounded-lg overflow-hidden">
-                <BsLinkedin className="z-30 text-4xl text-sky-600"/>
-                <div className="absolute bg-white w-8 h-8"></div>
+            <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-5559221a5/" target="_blank" className="z-10 fixed bottom-4 right-4 h-10 flex justify-center items-center animate-bounceLite overflow-hidden">
+                <img className="h-full" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
             </a>
 
-            <header className="z-50 fixed top-0 left-0 w-full bg-pastelViolet p-4 md:px-8 flex justify-between items-center md:border-b md:border-b-zinc-600">
+            <header className="z-50 fixed top-0 left-0 w-full bg-pastelViolet p-4 md:px-8 flex justify-between items-center md:border-b md:border-b-zinc-600 shadow-lg">
                 <div className="flex gap-2 justify-center items-center">
                     <Tb3DCubeSphere className=" text-3xl sm:text-5xl"/>
                     <h1 className=" font-changa font-semibold sm:text-2xl">JP Developer</h1>
@@ -321,7 +320,7 @@ const App = () => {
                             </div>
 
                             <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" className=" rounded-2xl"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/>
                                 <span className="font-medium">Javascript</span>
                             </div>
 
@@ -394,7 +393,16 @@ const App = () => {
                     </header>
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
-                        Projetos aqui
+                        <div className="relative w-[22rem] h-[21rem] rounded-3xl flex flex-col bg-darkPastelViolet/20 overflow-clip">
+                            <div className="absolute top-0 left-7 px-2 py-1 z-10 font-medium bg-pastelPink rounded-b-lg">freelancer</div>
+                            <a target="_blank" href="https://lavateriapay.com.br" className="h-[70%] overflow-hidden">
+                                <img className="h-full object-cover hover:scale-110 transition-all" src={lavateriapay} alt="lavateria pay" />
+                            </a>
+                            <div className="h[30%] w-full p-5 flex flex-col gap-2">
+                                <a target="_blank" href="https://lavateriapay.com.br" className="block text-2xl font-semibold hover:text-pastelPink transition-all">Lavateria Pay</a>
+                                <span className="text-[14px] text-violet-300/50 font-medium">10 de Maio de 2023 • <span className="font-semibold text-pastelPink">Jp Developer</span></span>
+                            </div>
+                        </div>
                     </main>
                 </div>
             </section>
@@ -407,7 +415,29 @@ const App = () => {
                     </header>
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
-                        Contato aqui
+                        <div className="flex flex-col items-center p-4 px-8 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
+                            <i className="devicon-github-original text-8xl"></i>
+
+                            <h2 className="font-medium text-center">GitHub</h2>
+
+                            <a href="github.com/JotaPeans" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
+                        </div>
+
+                        <div className="flex flex-col items-center p-4 px-8 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
+          
+                            <h2 className="font-medium text-center">Linkedin</h2>
+
+                            <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-5559221a5/" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
+                        </div>
+
+                        <div className="flex flex-col items-center p-4 px-8 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
+                            <img className=" max-h-[95px] rounded-lg" src="https://play-lh.googleusercontent.com/yNBbWLb1_Te7UELDjx4OjKpkYcW79nklxeB-xJThgaN0hiXpIDs2hHt3P9XISi4fEjwH=w240-h480" alt="99 Freelas img"/>
+          
+                            <h2 className="font-medium text-center">99 Freelas</h2>
+
+                            <a href="https://www.99freelas.com.br/user/joaopedro0202" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
+                        </div>
                     </main>
                 </div>
             </section>
