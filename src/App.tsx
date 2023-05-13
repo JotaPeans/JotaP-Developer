@@ -13,16 +13,19 @@ import { BiCodeBlock } from "react-icons/bi";
 import { SlScreenDesktop } from "react-icons/sl";
 import { TbSettingsAutomation } from "react-icons/tb";
 import { DiTerminal } from "react-icons/di";
+import { TiArrowUpThick } from "react-icons/ti";
 
 //images
 import photo1 from "./assets/images/photo1.png";
 import photo2 from "./assets/images/photo2.png";
 import lavateriapay from "./assets/images/lavateriapay.png";
+import daymessages from "./assets/images/DAY preview.png";
 
 const App = () => {
     const [ nav, setNav ] = useState(false);
     const [ text, setText ] = useState("");
     const [ activeSection, setActiveSection ] = useState<"home" | "about" | "certificados" | "servicos" | "projetos" | "contato">("home");
+    const [ buttonToTop, setButtonToTop ] = useState(false);
 
     const hourRef = useRef<HTMLSpanElement>(null);
     const minuteRef = useRef<HTMLSpanElement>(null);
@@ -44,6 +47,14 @@ const App = () => {
             secondRef.current!.textContent = seconds < 10 ? "0" + seconds.toString() : seconds.toString();
         }, 1000);
     }, []);
+
+    function handleScroll() {
+        console.log(window.scrollY);
+        if(window.scrollY >= 2500) setButtonToTop(true);
+        else setButtonToTop(false);
+    }
+
+    window.addEventListener("scroll", handleScroll);
 
     return (
         <main className="relative w-screen min-h-screen h-full bg-pastelViolet text-white">
@@ -257,7 +268,7 @@ const App = () => {
                     </header>
 
                     <main className="flex flex-col lg:flex-row gap-5 justify-center items-center md:px-10 lg:gap-8 mt-10">
-                        <img src={photo1} className="rounded-full border-4 border-darkPastelViolet max-w-[160px]"/>
+                        <img src={photo1} className="rounded-full border-4 border-darkPastelViolet max-w-[160px] hover:scale-105 transition-all"/>
 
                         <div className="rounded-xl bg-slate-50 min-w-[300px] w-[90%] text-pastelViolet p-6 shadow-lg">
                             <p className="text-justify font-normal mb-3">
@@ -287,19 +298,19 @@ const App = () => {
                     
                     <main className="flex flex-col gap-4 justify-center items-center mt-10">
                         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center">
-                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-indigo-500 shadow-lg shadow-indigo-500/50 w-[19rem] h-[19rem]">
+                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-indigo-500 shadow-lg shadow-indigo-500/50 w-[19rem] h-[19rem] hover:-translate-y-2 transition-all duration-300">
                                 <SlScreenDesktop className="text-6xl"/>
                                 <h2 className="text-xl font-semibold">Landing Pages</h2>
                                 <p className="text-center font-medium">Desenvolvimento de landing pages completas e responsivas</p>
                             </div>
 
-                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-pastelYellow shadow-lg shadow-pastelYellow/50 w-[19rem] h-[19rem]">
+                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-pastelYellow shadow-lg shadow-pastelYellow/50 w-[19rem] h-[19rem] hover:-translate-y-2 transition-all duration-300">
                                 <BiCodeBlock className="text-6xl"/>
                                 <h2 className="text-xl font-semibold">Sistemas</h2>
                                 <p className="text-center font-medium text-darkPastelViolet/80">Desenvolvimento de sistemas web ou desktop completos e responsivos</p>
                             </div>
 
-                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-pastelPink shadow-lg shadow-pastelPink/50 w-[19rem] h-[19rem]">
+                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-pastelPink shadow-lg shadow-pastelPink/50 w-[19rem] h-[19rem] hover:-translate-y-2 transition-all duration-300">
                                 <TbSettingsAutomation className="text-6xl"/>
                                 <h2 className="text-xl font-semibold">Automações</h2>
                                 <p className="text-center font-medium">Automações completas de rotinas ou de softwares</p>
@@ -393,9 +404,10 @@ const App = () => {
                     </header>
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
+
                         <div className="relative w-[22rem] h-[21rem] rounded-3xl flex flex-col bg-darkPastelViolet/20 overflow-clip">
                             <div className="absolute top-0 left-7 px-2 py-1 z-10 font-medium bg-pastelPink rounded-b-lg">freelancer</div>
-                            <a target="_blank" href="https://lavateriapay.com.br" className="h-[70%] overflow-hidden">
+                            <a target="_blank" href="https://lavateriapay.com.br" className="h-[70%] overflow-hidden flex justify-center items-center">
                                 <img className="h-full object-cover hover:scale-110 transition-all" src={lavateriapay} alt="lavateria pay" />
                             </a>
                             <div className="h[30%] w-full p-5 flex flex-col gap-2">
@@ -403,6 +415,18 @@ const App = () => {
                                 <span className="text-[14px] text-violet-300/50 font-medium">10 de Maio de 2023 • <span className="font-semibold text-pastelPink">Jp Developer</span></span>
                             </div>
                         </div>
+
+                        <div className="relative w-[22rem] h-[21rem] rounded-3xl flex flex-col bg-darkPastelViolet/20 overflow-clip">
+                            <div className="absolute top-0 left-7 px-2 py-1 z-10 font-medium bg-pastelPink rounded-b-lg">pessoal</div>
+                            <a target="_blank" href="https://day-messages.vercel.app" className="h-[70%] overflow-hidden flex justify-center items-center bg-darkPastelViolet/30">
+                                <img className="h-full object-cover hover:scale-110 transition-all" src={daymessages} alt="Day Messages" />
+                            </a>
+                            <div className="h[30%] w-full p-5 flex flex-col gap-2">
+                                <a target="_blank" href="https://day-messages.vercel.app" className="block text-2xl font-semibold hover:text-pastelPink transition-all">Day Messages</a>
+                                <span className="text-[14px] text-violet-300/50 font-medium">25 de fevereiro de 2023 • <span className="font-semibold text-pastelPink">Jp Developer</span></span>
+                            </div>
+                        </div>
+
                     </main>
                 </div>
             </section>
@@ -442,9 +466,27 @@ const App = () => {
                 </div>
             </section>
 
-            <footer className="mt-10 bg-slate-600/60 p-5">
+            <footer className="mt-10 bg-slate-600/60 p-14">
                 <p className="text-center">© 2023 Desenvolvido por <a className=" font-semibold underline" href="https://jpdeveloper.vercel.app/">jpdeveloper</a></p>
             </footer>
+
+            <Link 
+                onClick={() => {
+                    setNav(!nav);
+                    setActiveSection("home");
+                }}
+                offset={-80}
+                to="about"
+                smooth={true}
+                duration={500}
+                className={`${!buttonToTop ? "opacity-0 pointer-events-none" : ""} fixed bottom-3 h-8 w-8 flex justify-center items-center left-1/2 -translate-x-1/2 rounded-full bg-darkPastelViolet/50 p-1 hover:bg-pastelPink transition-all duration-300 cursor-pointer`}
+            >
+                <TiArrowUpThick className="text-xl"/>
+            </Link>
+
+            {/* <button className={`${!buttonToTop ? "opacity-0" : ""} fixed bottom-3 h-8 w-8  left-1/2 -translate-x-1/2 rounded-full bg-pastelPink p-1 hover:bg-darkPastelPink transition-all duration-300`}>
+                
+            </button> */}
         </main>
     );
 }
