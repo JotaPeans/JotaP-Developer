@@ -49,9 +49,15 @@ const App = () => {
     }, []);
 
     function handleScroll() {
-        console.log(window.scrollY);
-        if(window.scrollY >= 2500) setButtonToTop(true);
-        else setButtonToTop(false);
+        
+        if(window.innerWidth <= 400) {
+            if(window.scrollY >= 6000) setButtonToTop(true);
+            else setButtonToTop(false);
+        }
+        else {
+            if(window.scrollY >= 2500) setButtonToTop(true);
+            else setButtonToTop(false);
+        }
     }
 
     window.addEventListener("scroll", handleScroll);
@@ -472,7 +478,7 @@ const App = () => {
 
             <Link 
                 onClick={() => {
-                    setNav(!nav);
+                    setNav(false);
                     setActiveSection("home");
                 }}
                 offset={-80}
