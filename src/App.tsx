@@ -48,19 +48,10 @@ const App = () => {
         }, 1000);
     }, []);
 
-    function handleScroll() {
-        
-        if(window.innerWidth <= 400) {
-            if(window.scrollY >= 6000) setButtonToTop(true);
-            else setButtonToTop(false);
-        }
-        else {
-            if(window.scrollY >= 2500) setButtonToTop(true);
-            else setButtonToTop(false);
-        }
-    }
-
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", () => {
+        if(window.scrollY+window.innerHeight === document.body.offsetHeight) setButtonToTop(true);
+        else setButtonToTop(false);
+    });
 
     return (
         <main className="relative w-screen min-h-screen h-full bg-pastelViolet text-white">
