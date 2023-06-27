@@ -49,7 +49,7 @@ const App = () => {
     }, []);
 
     window.addEventListener("scroll", () => {
-        if(window.scrollY+window.innerHeight === document.body.offsetHeight) setButtonToTop(true);
+        if(window.scrollY+window.innerHeight >= document.body.offsetHeight - 50) setButtonToTop(true);
         else setButtonToTop(false);
     });
 
