@@ -21,6 +21,9 @@ import photo2 from "./assets/images/photo2.png";
 import lavateriapay from "./assets/images/lavateriapay.png";
 import daymessages from "./assets/images/DAY preview.png";
 
+//components
+import NavLinks from "./assets/components/NavLinks";
+
 const App = () => {
     const [ nav, setNav ] = useState(false);
     const [ text, setText ] = useState("");
@@ -81,158 +84,12 @@ const App = () => {
                         <IoClose onClick={() => setNav(!nav)} className="md:hidden text-2xl cursor-pointer"/>
                     )}
                     <nav className="hidden md:flex gap-3 lg:gap-5">
-                            <Link
-                                onClick={() => setActiveSection("home")}
-                                to="home"
-                                smooth={true}
-                                duration={500}
-                                className={`cursor-pointer ${activeSection === "home" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                            >
-                                Home
-                            </Link>
-
-                            <Link 
-                                onClick={() => setActiveSection("about")}
-                                offset={-80}
-                                to="about"
-                                smooth={true}
-                                duration={500}
-                                className={`cursor-pointer ${activeSection === "about" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                            >
-                                Sobre mim
-                            </Link>
-
-                            <Link
-                                onClick={() => setActiveSection("servicos")}
-                                offset={-80}
-                                to="servicos"
-                                smooth={true}
-                                duration={500}
-                                className={`cursor-pointer ${activeSection === "servicos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                            >
-                                Serviços
-                            </Link>
-
-                            <Link 
-                                onClick={() => setActiveSection("certificados")}
-                                offset={-80} 
-                                to="certificados" 
-                                smooth={true} 
-                                duration={500} 
-                                className={`cursor-pointer ${activeSection === "certificados" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                            >
-                                Certificados
-                            </Link>         
-
-                            <Link 
-                                onClick={() => setActiveSection("projetos")}
-                                offset={-80} 
-                                to="projetos" 
-                                smooth={true} 
-                                duration={500} 
-                                className={`cursor-pointer ${activeSection === "projetos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                            >
-                                Projetos
-                            </Link>
-
-                            <Link 
-                                onClick={() => setActiveSection("contato")}
-                                offset={-80} 
-                                to="contato"
-                                smooth={true} 
-                                duration={500} 
-                                className={`cursor-pointer ${activeSection === "contato" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                            >
-                                Contato
-                            </Link>
+                        <NavLinks nav={nav} setNav={setNav} activeSection={activeSection} setActiveSection={setActiveSection}/>
                     </nav>
                 </div>
             </header>
-
-            <nav className={`md:hidden z-40 fixed left-0 top-[62px] w-full flex flex-col items-end pr-5 py-3 gap-4 bg-pastelViolet transition-all duration-300 ${nav ? "" : " -translate-y-[15.5rem] sm:-translate-y-[14.4rem]"} border-b border-b-zinc-600`}>
-                <Link 
-                    onClick={() => {
-                        setNav(!nav);
-                        setActiveSection("home");
-                    }}
-                    to="home"
-                    smooth={true}
-                    duration={500}
-                    className={`cursor-pointer ${activeSection === "home" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                >
-                    Home
-                </Link>
-
-                <Link 
-                    onClick={() => {
-                        setNav(!nav);
-                        setActiveSection("about");
-                    }}
-                    offset={-80}
-                    to="about"
-                    smooth={true}
-                    duration={500}
-                    className={`cursor-pointer ${activeSection === "about" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                >
-                    Sobre mim
-                </Link>
-
-                <Link
-                    onClick={() => {
-                        setNav(!nav);
-                        setActiveSection("servicos");
-                    }}
-                    offset={-80}
-                    to="servicos"
-                    smooth={true}
-                    duration={500}
-                    className={`cursor-pointer ${activeSection === "servicos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                >
-                    Serviços
-                </Link>
-                
-                <Link
-                    onClick={() => {
-                        setNav(!nav);
-                        setActiveSection("certificados");
-                    }}
-                    offset={-80}
-                    to="certificados"
-                    smooth={true}
-                    duration={500}
-                    className={`cursor-pointer ${activeSection === "certificados" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                >
-                    Certificados
-                </Link> 
-                
-                <Link
-                    onClick={() => {
-                        setNav(!nav);
-                        setActiveSection("projetos");
-                    }}
-                    offset={-80}
-                    to="projetos"
-                    smooth={true}
-                    duration={500}
-                    className={`cursor-pointer ${activeSection === "projetos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                >
-                    Projetos
-                </Link>
-
-                <Link
-                    onClick={() => {
-                        setNav(!nav);
-                        setActiveSection("contato");
-                    }}
-                    offset={-80}
-                    to="pontato"
-                    smooth={true}
-                    duration={500}
-                    className={`cursor-pointer ${activeSection === "contato" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
-                >
-                    Contato
-                </Link>
-                
+            <nav data-nav={nav} className="md:hidden z-40 fixed left-0 top-[62px] w-full flex flex-col items-end pr-5 py-3 gap-4 bg-pastelViolet transition-all duration-300 data-[nav=false]:-translate-y-[15.5rem] sm:data-[nav=false]:-translate-y-[14.4rem] sm:data-[nav=true]:translate-y-[1rem] border-b border-b-zinc-600">
+                <NavLinks nav={nav} setNav={setNav} activeSection={activeSection} setActiveSection={setActiveSection}/>
             </nav>
 
             <section id="home" className="relative h-screen flex flex-col justify-center items-center gap-7 p-2">
@@ -240,7 +97,7 @@ const App = () => {
                     <img src={photo2} className="rounded-full border-4 border-darkPastelViolet max-w-[240px]"/>
                     <h1 className="text-3xl sm:text-5xl font-medium">João Pedro</h1>
                     <h3 className="text-lg">{text}</h3>
-                    <Link to="Contato" smooth={true} duration={500} className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2">Contate-me</Link>
+                    <Link to="contato" smooth={true} duration={500} className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2">Contate-me</Link>
                 </div>
 
                 <div className="flex justify-center items-center gap-2">
@@ -482,17 +339,14 @@ const App = () => {
                     setActiveSection("home");
                 }}
                 offset={-80}
-                to="about"
+                to="home"
                 smooth={true}
                 duration={500}
-                className={`${!buttonToTop ? "opacity-0 pointer-events-none" : ""} fixed bottom-3 h-8 w-8 flex justify-center items-center left-1/2 -translate-x-1/2 rounded-full bg-darkPastelViolet/50 p-1 hover:bg-pastelPink transition-all duration-300 cursor-pointer`}
+                data-toTop={buttonToTop}
+                className="data-[toTop=false]:opacity-0 data-[toTop=false]:pointer-events-none fixed bottom-3 h-8 w-8 flex justify-center items-center left-1/2 -translate-x-1/2 rounded-full bg-darkPastelViolet/50 p-1 hover:bg-pastelPink transition-all duration-300 cursor-pointer"
             >
                 <TiArrowUpThick className="text-xl"/>
             </Link>
-
-            {/* <button className={`${!buttonToTop ? "opacity-0" : ""} fixed bottom-3 h-8 w-8  left-1/2 -translate-x-1/2 rounded-full bg-pastelPink p-1 hover:bg-darkPastelPink transition-all duration-300`}>
-                
-            </button> */}
         </main>
     );
 }
