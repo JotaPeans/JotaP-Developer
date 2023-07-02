@@ -298,7 +298,7 @@ const App = () => {
 
                             <h2 className="font-medium text-center">GitHub</h2>
 
-                            <a href="github.com/JotaPeans" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
+                            <a href="https://github.com/JotaPeans" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
                         </div>
 
                         <div className="flex flex-col items-center p-4 px-8 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
