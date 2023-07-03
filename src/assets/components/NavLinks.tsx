@@ -18,7 +18,7 @@ const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProp
                 to="home"
                 smooth={true}
                 duration={500}
-                className={`cursor-pointer ${activeSection === "home" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
+                className={`cursor-pointer ${activeSection === "home" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
             >
                 Home
             </Link>
@@ -32,7 +32,7 @@ const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProp
                 to="about"
                 smooth={true}
                 duration={500}
-                className={`cursor-pointer ${activeSection === "about" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
+                className={`cursor-pointer ${activeSection === "about" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
             >
                 Sobre mim
             </Link>
@@ -46,7 +46,7 @@ const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProp
                 to="servicos"
                 smooth={true}
                 duration={500}
-                className={`cursor-pointer ${activeSection === "servicos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
+                className={`cursor-pointer ${activeSection === "servicos" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
             >
                 Serviços
             </Link>
@@ -60,7 +60,7 @@ const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProp
                 to="certificados"
                 smooth={true}
                 duration={500}
-                className={`cursor-pointer ${activeSection === "certificados" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
+                className={`cursor-pointer ${activeSection === "certificados" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
             >
                 Certificados
             </Link> 
@@ -74,7 +74,7 @@ const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProp
                 to="projetos"
                 smooth={true}
                 duration={500}
-                className={`cursor-pointer ${activeSection === "projetos" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
+                className={`cursor-pointer ${activeSection === "projetos" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
             >
                 Projetos
             </Link>
@@ -88,7 +88,7 @@ const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProp
                 to="contato"
                 smooth={true}
                 duration={500}
-                className={`cursor-pointer ${activeSection === "contato" ? "text-pastelYellow" : "text-white"} hover:text-pastelYellow transition-all font-semibold`}
+                className={`cursor-pointer ${activeSection === "contato" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
             >
                 Contato
             </Link>

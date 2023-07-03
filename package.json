@@ -14,6 +14,7 @@
     "@types/react-icons": "^3.0.0",
     "@types/react-scroll": "^1.8.7",
     "date-fns-tz": "^2.0.0",
+    "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",

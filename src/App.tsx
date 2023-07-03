@@ -1,9 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Link } from "react-scroll";
-import calculateTime from "./assets/functions/calcTime";
-import certificates from "./assets/certificates.json";
 
-//icons
+// json
+import certificates from "./assets/certificates.json";
+import tecs from "./assets/tecs.json"
+
+// anim
+import darkModeToggle from "./assets/anim/darkModeToggle.json";
+
+// icons
 import { Tb3DCubeSphere } from "react-icons/tb";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
@@ -15,24 +22,33 @@ import { TbSettingsAutomation } from "react-icons/tb";
 import { DiTerminal } from "react-icons/di";
 import { TiArrowUpThick } from "react-icons/ti";
 
-//images
+// images
 import photo1 from "./assets/images/photo1.png";
 import photo2 from "./assets/images/photo2.png";
 import lavateriapay from "./assets/images/lavateriapay.png";
 import daymessages from "./assets/images/DAY preview.png";
 
-//components
+// components
 import NavLinks from "./assets/components/NavLinks";
+import Services from "./assets/components/Services";
+import Certificate from "./assets/components/Certificate";
+import Project from "./assets/components/Project";
+import Contact from "./assets/components/Contact";
+import Tec from "./assets/components/Tec";
+import Lottie from "lottie-react"
 
 const App = () => {
     const [ nav, setNav ] = useState(false);
     const [ text, setText ] = useState("");
     const [ activeSection, setActiveSection ] = useState<"home" | "about" | "certificados" | "servicos" | "projetos" | "contato">("home");
     const [ buttonToTop, setButtonToTop ] = useState(false);
+    const [ direction, setDirection ] = useState<1 | -1>(1);
+    const [ disable, setDisable ] = useState(false)
 
-    const hourRef = useRef<HTMLSpanElement>(null);
-    const minuteRef = useRef<HTMLSpanElement>(null);
-    const secondRef = useRef<HTMLSpanElement>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lottieref = useRef<any>(null);
+
+    const [ html ] = document.getElementsByTagName("html");
 
     const write = (arg: string, i = 0) => {
         if (i < arg.length) {
@@ -41,14 +57,41 @@ const App = () => {
         }
     }
 
+    const toggleDarkMode = useCallback(() => {
+        setDisable(true);
+        if (direction === 1) {
+            lottieref.current?.goToAndPlay(40, true);
+            html.classList.toggle("dark");
+            setTimeout(() => {
+                setDisable(false);
+            }, 800);
+        }
+        else {
+            lottieref.current?.goToAndPlay(80, true);
+            html.classList.toggle("dark");
+            setTimeout(() => {
+                setDisable(false);
+            }, 800);
+        }
+    }, [direction]);
+
+    const changeDarkModeButton = useCallback(() => {
+        if (direction === 1){
+            lottieref.current?.goToAndStop(134, true);
+            lottieref.current?.setDirection(-1);
+            setDirection(-1);
+        }
+        else {
+            lottieref.current?.goToAndStop(0, true);
+            lottieref.current?.setDirection(1);
+            setDirection(1);
+        }
+    }, [direction]);
+
     useEffect(() => {
         setTimeout(() => write("FullStack Developer"));
-        setInterval(() => {
-            let { hours, minutes, seconds } = calculateTime();
-            hourRef.current!.textContent = hours < 10 ? "0" + hours.toString() : hours.toString();
-            minuteRef.current!.textContent = minutes < 10 ? "0" + minutes.toString() : minutes.toString();
-            secondRef.current!.textContent = seconds < 10 ? "0" + seconds.toString() : seconds.toString();
-        }, 1000);
+        lottieref.current?.goToAndPlay(40, true);
+        lottieref.current.setSpeed(2);
     }, []);
 
     window.addEventListener("scroll", () => {
@@ -57,15 +100,24 @@ const App = () => {
     });
 
     return (
-        <main className="relative w-screen min-h-screen h-full bg-pastelViolet text-white">
+        <main className="relative w-screen min-h-screen h-full dark:bg-pastelViolet bg-slate-200 dark:text-white text-zinc-700 select-none transition-all">
             <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-5559221a5/" target="_blank" className="z-10 fixed bottom-4 right-4 h-10 flex justify-center items-center animate-bounceLite overflow-hidden">
                 <img className="h-full" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
             </a>
 
-            <header className="z-50 fixed top-0 left-0 w-full bg-pastelViolet p-4 md:px-8 flex justify-between items-center md:border-b md:border-b-zinc-600 shadow-lg">
+            <header className="z-50 fixed top-0 left-0 w-full dark:bg-pastelViolet bg-slate-200 p-4 md:px-8 flex justify-between items-center md:border-b md:border-b-zinc-600 shadow-lg h-20">
                 <div className="flex gap-2 justify-center items-center">
                     <Tb3DCubeSphere className=" text-3xl sm:text-5xl"/>
                     <h1 className=" font-changa font-semibold sm:text-2xl">JP Developer</h1>
+                    <button onClick={toggleDarkMode} disabled={disable}>
+                        <Lottie
+                            onLoopComplete={changeDarkModeButton}
+                            lottieRef={lottieref}
+                            autoplay={false}
+                            className="h-20 cursor-pointer"
+                            animationData={darkModeToggle}
+                        />
+                    </button>
                 </div>
                 
                 <div className="flex gap-2 justify-center items-center">
@@ -79,7 +131,7 @@ const App = () => {
                     </nav>
                 </div>
             </header>
-            <nav data-nav={nav} className="md:hidden z-40 fixed left-0 top-[62px] w-full flex flex-col items-end pr-5 py-3 gap-4 bg-pastelViolet transition-all duration-300 data-[nav=false]:-translate-y-[15.5rem] sm:data-[nav=false]:-translate-y-[14.4rem] sm:data-[nav=true]:translate-y-[1rem] border-b border-b-zinc-600">
+            <nav data-nav={nav} className="md:hidden z-40 fixed left-0 top-[62px] w-full flex flex-col items-end pr-5 py-3 gap-4 dark:bg-pastelViolet bg-slate-200 transition-all duration-300 data-[nav=false]:-translate-y-[15.5rem] sm:data-[nav=false]:-translate-y-[14.4rem] sm:data-[nav=true]:translate-y-[1rem] border-b border-b-zinc-600">
                 <NavLinks nav={nav} setNav={setNav} activeSection={activeSection} setActiveSection={setActiveSection}/>
             </nav>
 
@@ -88,24 +140,7 @@ const App = () => {
                     <img src={photo2} className="rounded-full border-4 border-darkPastelViolet max-w-[240px]"/>
                     <h1 className="text-3xl sm:text-5xl font-medium">João Pedro</h1>
                     <h3 className="text-lg">{text}</h3>
-                    <Link to="contato" smooth={true} duration={500} className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2">Contate-me</Link>
-                </div>
-
-                <div className="flex justify-center items-center gap-2">
-                    <div className="relative w-28 h-28 sm:w-36 sm:h-36 bg-darkPastelViolet rounded-lg flex flex-col justify-center items-center shadow-lg overflow-hidden transition-all">
-                        <span ref={hourRef} className="mb-5 text-3xl sm:text-5xl">00</span>
-                        <span className="absolute bottom-0 w-full bg-[#26243d] py-1 text-center text-sm sm:text-lg">Horas</span>
-                    </div>
-
-                    <div className="relative w-28 h-28 sm:w-36 sm:h-36 bg-darkPastelViolet rounded-lg flex flex-col justify-center items-center shadow-lg overflow-hidden transition-all">
-                        <span ref={minuteRef} className="mb-5 text-3xl sm:text-5xl">00</span>
-                        <span className="absolute bottom-0 w-full bg-[#26243d] py-1 text-center text-sm sm:text-lg">Minutos</span>
-                    </div>
-
-                    <div className="relative w-28 h-28 sm:w-36 sm:h-36 bg-darkPastelViolet rounded-lg flex flex-col justify-center items-center shadow-lg overflow-hidden transition-all">
-                        <span ref={secondRef} className="mb-5 text-3xl sm:text-5xl">00</span>
-                        <span className="absolute bottom-0 w-full bg-[#26243d] py-1 text-center text-sm sm:text-lg">Segundos</span>
-                    </div>
+                    <Link to="contato" smooth={true} duration={500} className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2 text-white">Contate-me</Link>
                 </div>
 
                 <div className="absolute bottom-8 flex flex-col gap-1 justify-center items-center">
@@ -152,75 +187,22 @@ const App = () => {
                     
                     <main className="flex flex-col gap-4 justify-center items-center mt-10">
                         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center">
-                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-indigo-500 shadow-lg shadow-indigo-500/50 w-[19rem] h-[19rem] hover:-translate-y-2 transition-all duration-300">
-                                <SlScreenDesktop className="text-6xl"/>
-                                <h2 className="text-xl font-semibold">Landing Pages</h2>
-                                <p className="text-center font-medium">Desenvolvimento de landing pages completas e responsivas</p>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-pastelYellow shadow-lg shadow-pastelYellow/50 w-[19rem] h-[19rem] hover:-translate-y-2 transition-all duration-300">
-                                <BiCodeBlock className="text-6xl"/>
-                                <h2 className="text-xl font-semibold">Sistemas</h2>
-                                <p className="text-center font-medium text-darkPastelViolet/80">Desenvolvimento de sistemas web ou desktop completos e responsivos</p>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center gap-3 rounded-3xl p-5 text-center bg-pastelPink shadow-lg shadow-pastelPink/50 w-[19rem] h-[19rem] hover:-translate-y-2 transition-all duration-300">
-                                <TbSettingsAutomation className="text-6xl"/>
-                                <h2 className="text-xl font-semibold">Automações</h2>
-                                <p className="text-center font-medium">Automações completas de rotinas ou de softwares</p>
-                            </div>
+                            <Services color="indigo" icon={SlScreenDesktop} title="Landing Pages" text="Desenvolvimento de landing pages completas e responsivas"/>
+                            <Services color="yellow" icon={BiCodeBlock} title="Sistemas" text="Desenvolvimento de sistemas web ou desktop completos e responsivos"/>
+                            <Services color="pink" icon={TbSettingsAutomation} title="Automações" text="Automações completas de rotinas ou de softwares"/>
                         </div>
                         
                         <h2 className="flex justify-center items-center gap-4 text-3xl font-medium mt-5">Tecnologias <DiTerminal className="text-5xl"/></h2>
                         
-                        <div className=" w-[90%] sm:w-full flex justify-center items-center flex-wrap gap-8 mt-4 bg-darkPastelViolet/40 p-5 rounded-3xl">
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
-                                <span className="font-medium">HTML</span>
-                            </div>
-                            
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
-                                <span className="font-medium">CSS</span>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/>
-                                <span className="font-medium">Javascript</span>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
-                                <span className="font-medium">React</span>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <i className="devicon-nextjs-original-wordmark text-8xl"></i>
-                                <span className="font-medium">Next.js</span>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" />
-                                <span className="font-medium">Tailwind CSS</span>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" />
-                                <span className="font-medium">MongoDB</span>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" />
-                                <span className="font-medium">Google Cloud</span>
-                            </div>
-
-                            <div className="flex flex-col justify-center items-center w-20 text-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
-                                <span className="font-medium">Python</span>
-                            </div>
-
+                        <div className=" w-[90%] sm:w-full flex justify-center items-center flex-wrap gap-8 mt-4 dark:bg-darkPastelViolet/40 bg-zinc-100 p-5 rounded-3xl">
+                            {tecs.map((item, index) => (
+                                <Tec 
+                                    key={index} 
+                                    title={item.title} 
+                                    icon={item.title === "Next.js" ? <i className={item.icon}/> : <img src={item.icon} alt={item.title}/>}
+                                />
+                            ))}
                         </div>
-          
                     </main>
                 </div>
             </section>
@@ -235,15 +217,7 @@ const App = () => {
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
                         {certificates.map((item, index) => {
                             return (
-                                <div key={index} className="flex flex-col items-center p-4 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
-                                    <a target="_blank" href={item.link} className="rounded-lg overflow-hidden">
-                                        <img src={item.imageLink} alt="Certificate Image" className=" hover:scale-105 transition-all"/>
-                                    </a>
-
-                                    <h2 className="font-medium text-center">{item.name}</h2>
-
-                                    <a href={item.link} target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
-                                </div>
+                                <Certificate key={index} href={item.link} img={item.imageLink} name={item.name}/>
                             )
                         })}
                     </main>
@@ -258,29 +232,8 @@ const App = () => {
                     </header>
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
-
-                        <div className="relative w-[22rem] h-[21rem] rounded-3xl flex flex-col bg-darkPastelViolet/20 overflow-clip">
-                            <div className="absolute top-0 left-7 px-2 py-1 z-10 font-medium bg-pastelPink rounded-b-lg">freelancer</div>
-                            <a target="_blank" href="https://lavateriapay.com.br" className="h-[70%] overflow-hidden flex justify-center items-center">
-                                <img className="h-full object-cover hover:scale-110 transition-all" src={lavateriapay} alt="lavateria pay" />
-                            </a>
-                            <div className="h[30%] w-full p-5 flex flex-col gap-2">
-                                <a target="_blank" href="https://lavateriapay.com.br" className="block text-2xl font-semibold hover:text-pastelPink transition-all">Lavateria Pay</a>
-                                <span className="text-[14px] text-violet-300/50 font-medium">10 de Maio de 2023 • <span className="font-semibold text-pastelPink">Jp Developer</span></span>
-                            </div>
-                        </div>
-
-                        <div className="relative w-[22rem] h-[21rem] rounded-3xl flex flex-col bg-darkPastelViolet/20 overflow-clip">
-                            <div className="absolute top-0 left-7 px-2 py-1 z-10 font-medium bg-pastelPink rounded-b-lg">pessoal</div>
-                            <a target="_blank" href="https://day-messages.vercel.app" className="h-[70%] overflow-hidden flex justify-center items-center bg-darkPastelViolet/30">
-                                <img className="h-full object-cover hover:scale-110 transition-all" src={daymessages} alt="Day Messages" />
-                            </a>
-                            <div className="h[30%] w-full p-5 flex flex-col gap-2">
-                                <a target="_blank" href="https://day-messages.vercel.app" className="block text-2xl font-semibold hover:text-pastelPink transition-all">Day Messages</a>
-                                <span className="text-[14px] text-violet-300/50 font-medium">25 de fevereiro de 2023 • <span className="font-semibold text-pastelPink">Jp Developer</span></span>
-                            </div>
-                        </div>
-
+                        <Project name="Lavateria Pay" date="10 de Maio de 2023" imgSrc={lavateriapay} type="Freelancer"/>
+                        <Project name="Day Messages" date="25 de fevereiro de 2023" imgSrc={daymessages} type="Pessoal"/>
                     </main>
                 </div>
             </section>
@@ -293,34 +246,23 @@ const App = () => {
                     </header>
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
-                        <div className="flex flex-col items-center p-4 px-8 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
-                            <i className="devicon-github-original text-8xl"></i>
-
-                            <h2 className="font-medium text-center">GitHub</h2>
-
-                            <a href="https://github.com/JotaPeans" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
-                        </div>
-
-                        <div className="flex flex-col items-center p-4 px-8 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" />
-          
-                            <h2 className="font-medium text-center">Linkedin</h2>
-
-                            <a href="https://www.linkedin.com/in/jo%C3%A3o-pedro-5559221a5/" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
-                        </div>
-
-                        <div className="flex flex-col items-center p-4 px-8 gap-4 bg-darkPastelViolet/40 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
-                            <img className=" max-h-[95px] rounded-lg" src="https://play-lh.googleusercontent.com/yNBbWLb1_Te7UELDjx4OjKpkYcW79nklxeB-xJThgaN0hiXpIDs2hHt3P9XISi4fEjwH=w240-h480" alt="99 Freelas img"/>
-          
-                            <h2 className="font-medium text-center">99 Freelas</h2>
-
-                            <a href="https://www.99freelas.com.br/user/joaopedro0202" target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
-                        </div>
+                        <Contact 
+                            title="GitHub" 
+                            icon={<i className="devicon-github-original text-8xl"/>}
+                        />
+                        <Contact 
+                            title="Linkedin" 
+                            icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="Linkedin"/>}
+                        />
+                        <Contact 
+                            title="99 Freelas" 
+                            icon={<img className=" max-h-[95px] rounded-lg" src="https://play-lh.googleusercontent.com/yNBbWLb1_Te7UELDjx4OjKpkYcW79nklxeB-xJThgaN0hiXpIDs2hHt3P9XISi4fEjwH=w240-h480" alt="99 Freelas img"/>}
+                        />
                     </main>
                 </div>
             </section>
 
-            <footer className="mt-10 bg-slate-600/60 p-14">
+            <footer className="mt-10 dark:bg-slate-600/60 bg-zinc-100 p-14">
                 <p className="text-center">© 2023 Desenvolvido por <a className=" font-semibold underline" href="https://jpdeveloper.vercel.app/">jpdeveloper</a></p>
             </footer>
 
@@ -333,8 +275,8 @@ const App = () => {
                 to="home"
                 smooth={true}
                 duration={500}
-                data-toTop={buttonToTop}
-                className="data-[toTop=false]:opacity-0 data-[toTop=false]:pointer-events-none fixed bottom-3 h-8 w-8 flex justify-center items-center left-1/2 -translate-x-1/2 rounded-full bg-darkPastelViolet/50 p-1 hover:bg-pastelPink transition-all duration-300 cursor-pointer"
+                data-totop={buttonToTop}
+                className="data-[toTop=false]:opacity-0 data-[totop=false]:pointer-events-none fixed bottom-3 h-8 w-8 flex justify-center items-center left-1/2 -translate-x-1/2 rounded-full dark:bg-darkPastelViolet/50 bg-pastelViolet dark:text-white text-white p-1 dark:hover:bg-pastelPink hover:bg-pastelPink transition-all duration-300 cursor-pointer"
             >
                 <TiArrowUpThick className="text-xl"/>
             </Link>
