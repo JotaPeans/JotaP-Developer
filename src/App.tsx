@@ -232,8 +232,8 @@ const App = () => {
                     </header>
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
-                        <Project name="Lavateria Pay" date="10 de Maio de 2023" imgSrc={lavateriapay} type="Freelancer"/>
-                        <Project name="Day Messages" date="25 de fevereiro de 2023" imgSrc={daymessages} type="Pessoal"/>
+                        <Project link="https://lavateriapay.com.br" name="Lavateria Pay" date="10 de Maio de 2023" imgSrc={lavateriapay} type="Freelancer"/>
+                        <Project link="https://day-messages.vercel.app" name="Day Messages" date="25 de fevereiro de 2023" imgSrc={daymessages} type="Pessoal"/>
                     </main>
                 </div>
             </section>
