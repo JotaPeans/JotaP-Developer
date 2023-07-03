@@ -246,9 +246,9 @@ const App = () => {
                     </header>
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
-                        <Contact 
+                        <Contact
                             title="GitHub" 
-                            icon={<i className="devicon-github-original text-8xl"/>}
+                            icon={<i className={`devicon-github-original text-8xl ${direction === 1 ? "colored" : ""}`}/>}
                         />
                         <Contact 
                             title="Linkedin" 
