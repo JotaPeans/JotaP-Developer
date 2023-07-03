@@ -15,7 +15,7 @@ const Certificate = ({ href, img, name, ...rest }: CertificateProps) => {
 
             <h2 className="font-medium text-center">{name}</h2>
 
-            <a href={href} target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all">Acessar</a>
+            <a href={href} target="_blank" className="px-4 py-2 bg-pastelPink hover:bg-darkPastelPink rounded-lg transition-all dark:text-white text-white">Acessar</a>
         </div>
     );
 }

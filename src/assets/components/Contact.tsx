@@ -7,7 +7,7 @@ interface ContactProps extends HtmlHTMLAttributes<HTMLDivElement> {
 
 const Contact = ({ title, icon, ...rest }: ContactProps) => {
     return (
-        <div {...rest} className="flex flex-col items-center p-4 px-8 gap-4 dark:bg-darkPastelViolet/40 bg-zinc-100 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
+        <div {...rest} className="flex flex-col items-center p-4 px-8 gap-4 dark:bg-darkPastelViolet/40 dark:text-white text-white bg-zinc-100 rounded-xl shadow-lg max-w-[290px] max-h-[350px]">
             {icon}
 
             <h2 className="font-medium text-center">{title}</h2>

@@ -10,7 +10,7 @@ interface ProjectProps extends HtmlHTMLAttributes<HTMLDivElement> {
 const Project = ({ type, imgSrc, name, date, ...rest }: ProjectProps) => {
     return (
         <div {...rest} className="relative w-[22rem] h-[21rem] rounded-3xl flex flex-col dark:bg-darkPastelViolet/20 bg-zinc-100 overflow-clip">
-            <div className="absolute top-0 left-7 px-2 py-1 z-10 font-medium bg-pastelPink rounded-b-lg">{type}</div>
+            <div className="absolute top-0 left-7 px-2 py-1 z-10 font-medium bg-pastelPink rounded-b-lg dark:text-white text-white">{type}</div>
             <a target="_blank" href="https://lavateriapay.com.br" className="h-[70%] overflow-hidden flex justify-center items-center dark:bg-darkPastelViolet/30 bg-white">
                 <img className="h-full object-cover hover:scale-110 transition-all" src={imgSrc} alt={name} />
             </a>
