@@ -247,15 +247,18 @@ const App = () => {
                     
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
                         <Contact
-                            title="GitHub" 
+                            title="GitHub"
+                            link="https://github.com/JotaPeans"
                             icon={<i className={`devicon-github-original text-8xl ${direction === 1 ? "colored" : ""}`}/>}
                         />
                         <Contact 
-                            title="Linkedin" 
+                            title="Linkedin"
+                            link="https://www.linkedin.com/in/jo%C3%A3o-pedro-5559221a5/"
                             icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="Linkedin"/>}
                         />
                         <Contact 
-                            title="99 Freelas" 
+                            title="99 Freelas"
+                            link="https://www.99freelas.com.br/user/joaopedro0202"
                             icon={<img className=" max-h-[95px] rounded-lg" src="https://play-lh.googleusercontent.com/yNBbWLb1_Te7UELDjx4OjKpkYcW79nklxeB-xJThgaN0hiXpIDs2hHt3P9XISi4fEjwH=w240-h480" alt="99 Freelas img"/>}
                         />
                     </main>
