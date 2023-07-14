@@ -171,7 +171,7 @@ const App = () => {
                             </p>
 
                             <div className="flex justify-center items-center">
-                                <a className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2 text-white" target="_blank" href="https://drive.google.com/file/d/11mCjwinsyl5CWQkssoiSoP0cjY8QgAJr/view" >Download CV</a>
+                                <a className="cursor-pointer bg-pastelPink hover:bg-darkPastelPink transition-all py-2 px-4 rounded-lg font-semibold mt-2 text-white" target="_blank" href="https://drive.google.com/file/d/1FLZk2qcGwE3CnHeS2pnuLd_pzDfH3GmY/view?usp=sharing" >Download CV</a>
                             </div>
                         </div>
                     </main>
