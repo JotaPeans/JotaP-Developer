@@ -31,6 +31,10 @@ export default {
 
       animation: {
         bounceLite: 'bounceLite 4s ease-in-out infinite',
+      },
+
+      screens: {
+        "tablet": "830px"
       }
     }
   },

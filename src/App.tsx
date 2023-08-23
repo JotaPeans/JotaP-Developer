@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 
 // json
@@ -8,7 +8,7 @@ import certificates from "./assets/certificates.json";
 import tecs from "./assets/tecs.json"
 
 // anim
-import darkModeToggle from "./assets/anim/darkModeToggle.json";
+// import darkModeToggle from "./assets/anim/darkModeToggle.json";
 
 // icons
 import { Tb3DCubeSphere } from "react-icons/tb";
@@ -21,6 +21,7 @@ import { SlScreenDesktop } from "react-icons/sl";
 import { TbSettingsAutomation } from "react-icons/tb";
 import { DiTerminal } from "react-icons/di";
 import { TiArrowUpThick } from "react-icons/ti";
+import { BsSun, BsMoon } from "react-icons/bs";
 
 // images
 import photo1 from "./assets/images/photo1.png";
@@ -35,18 +36,17 @@ import Certificate from "./assets/components/Certificate";
 import Project from "./assets/components/Project";
 import Contact from "./assets/components/Contact";
 import Tec from "./assets/components/Tec";
-import Lottie from "lottie-react"
+// import Lottie from "lottie-react"
 
 const App = () => {
     const [ nav, setNav ] = useState(false);
     const [ text, setText ] = useState("");
     const [ activeSection, setActiveSection ] = useState<"home" | "about" | "certificados" | "servicos" | "projetos" | "contato">("home");
     const [ buttonToTop, setButtonToTop ] = useState(false);
-    const [ direction, setDirection ] = useState<1 | -1>(1);
-    const [ disable, setDisable ] = useState(false)
+    const [ mode, setMode ] = useState<"dark" | "light">("dark")
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const lottieref = useRef<any>(null);
+    // const lottieref = useRef<any>(null);
 
     const [ html ] = document.getElementsByTagName("html");
 
@@ -57,41 +57,13 @@ const App = () => {
         }
     }
 
-    const toggleDarkMode = useCallback(() => {
-        setDisable(true);
-        if (direction === 1) {
-            lottieref.current?.goToAndPlay(40, true);
-            html.classList.toggle("dark");
-            setTimeout(() => {
-                setDisable(false);
-            }, 800);
-        }
-        else {
-            lottieref.current?.goToAndPlay(80, true);
-            html.classList.toggle("dark");
-            setTimeout(() => {
-                setDisable(false);
-            }, 800);
-        }
-    }, [direction]);
-
-    const changeDarkModeButton = useCallback(() => {
-        if (direction === 1){
-            lottieref.current?.goToAndStop(134, true);
-            lottieref.current?.setDirection(-1);
-            setDirection(-1);
-        }
-        else {
-            lottieref.current?.goToAndStop(0, true);
-            lottieref.current?.setDirection(1);
-            setDirection(1);
-        }
-    }, [direction]);
+    function toggleDarkMode()  {
+        mode === "dark" ? setMode("light") : setMode("dark");
+        html.classList.toggle("dark");
+    }
 
     useEffect(() => {
         setTimeout(() => write("FullStack Developer"));
-        lottieref.current?.goToAndPlay(40, true);
-        lottieref.current.setSpeed(2);
     }, []);
 
     window.addEventListener("scroll", () => {
@@ -107,31 +79,25 @@ const App = () => {
 
             <header className="z-50 fixed top-0 left-0 w-full dark:bg-pastelViolet bg-slate-200 p-4 md:px-8 flex justify-between items-center md:border-b md:border-b-zinc-600 shadow-lg h-20">
                 <div className="flex gap-2 justify-center items-center">
-                    <Tb3DCubeSphere className=" text-3xl sm:text-5xl"/>
-                    <h1 className=" font-changa font-semibold sm:text-2xl">JP Developer</h1>
-                    <button onClick={toggleDarkMode} disabled={disable}>
-                        <Lottie
-                            onLoopComplete={changeDarkModeButton}
-                            lottieRef={lottieref}
-                            autoplay={false}
-                            className="h-20 cursor-pointer"
-                            animationData={darkModeToggle}
-                        />
+                    <Tb3DCubeSphere className=" text-3xl sm:text-5xl min-w-[2rem]"/>
+                    <h1 className=" font-changa font-semibold sm:text-2xl min-w-[8rem]">JP Developer</h1>
+                    <button onClick={toggleDarkMode}>
+                        { mode === "dark" ? <BsMoon className="text-2xl"/> : <BsSun className="text-2xl"/> }
                     </button>
                 </div>
                 
                 <div className="flex gap-2 justify-center items-center">
                     {!nav ? (
-                        <RxHamburgerMenu onClick={() => setNav(!nav)} className="md:hidden text-2xl cursor-pointer"/>
+                        <RxHamburgerMenu onClick={() => setNav(!nav)} className="tablet:hidden text-2xl cursor-pointer"/>
                     ) : (
-                        <IoClose onClick={() => setNav(!nav)} className="md:hidden text-2xl cursor-pointer"/>
+                        <IoClose onClick={() => setNav(!nav)} className="tablet:hidden text-2xl cursor-pointer"/>
                     )}
-                    <nav className="hidden md:flex gap-3 lg:gap-5">
+                    <nav className="hidden tablet:flex gap-3 lg:gap-5">
                         <NavLinks nav={nav} setNav={setNav} activeSection={activeSection} setActiveSection={setActiveSection}/>
                     </nav>
                 </div>
             </header>
-            <nav data-nav={nav} className="md:hidden z-40 fixed left-0 top-[62px] w-full flex flex-col items-end pr-5 py-3 gap-4 dark:bg-pastelViolet bg-slate-200 transition-all duration-300 data-[nav=false]:-translate-y-[15.5rem] sm:data-[nav=false]:-translate-y-[14.4rem] sm:data-[nav=true]:translate-y-[1rem] border-b border-b-zinc-600">
+            <nav data-nav={nav} className="tablet:hidden z-40 fixed left-0 top-[62px] w-full flex flex-col items-end pr-5 py-3 gap-4 dark:bg-pastelViolet bg-slate-200 transition-all duration-300 data-[nav=true]:translate-y-[1rem] data-[nav=false]:-translate-y-[15.5rem] sm:data-[nav=false]:-translate-y-[14.4rem] sm:data-[nav=true]:translate-y-[1rem] border-b border-b-zinc-600">
                 <NavLinks nav={nav} setNav={setNav} activeSection={activeSection} setActiveSection={setActiveSection}/>
             </nav>
 
@@ -249,7 +215,7 @@ const App = () => {
                         <Contact
                             title="GitHub"
                             link="https://github.com/JotaPeans"
-                            icon={<i className={`devicon-github-original text-8xl ${direction === 1 ? "colored" : ""}`}/>}
+                            icon={<i className={`devicon-github-original text-8xl ${mode === "dark" ? "colored" : ""}`}/>}
                         />
                         <Contact 
                             title="Linkedin"
