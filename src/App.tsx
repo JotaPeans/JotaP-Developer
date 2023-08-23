@@ -81,7 +81,7 @@ const App = () => {
                 <div className="flex gap-2 justify-center items-center">
                     <Tb3DCubeSphere className=" text-3xl sm:text-5xl min-w-[2rem]"/>
                     <h1 className=" font-changa font-semibold sm:text-2xl min-w-[8rem]">JP Developer</h1>
-                    <button onClick={toggleDarkMode}>
+                    <button onClick={toggleDarkMode} className="tablet:ml-8">
                         { mode === "dark" ? <BsMoon className="text-2xl"/> : <BsSun className="text-2xl"/> }
                     </button>
                 </div>
@@ -215,7 +215,7 @@ const App = () => {
                         <Contact
                             title="GitHub"
                             link="https://github.com/JotaPeans"
-                            icon={<i className={`devicon-github-original text-8xl ${mode === "dark" ? "colored" : ""}`}/>}
+                            icon={<i className={`devicon-github-original text-8xl ${mode === "light" ? "colored" : ""}`}/>}
                         />
                         <Contact 
                             title="Linkedin"
