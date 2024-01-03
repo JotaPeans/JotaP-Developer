@@ -127,7 +127,7 @@ const App = () => {
 
                         <div className="rounded-xl bg-slate-50 min-w-[300px] w-[90%] text-pastelViolet p-6 shadow-lg">
                             <p className="text-justify font-normal mb-3">
-                                Olá, meu nome é <span className="font-semibold text-darkPastelViolet">João Pedro</span> e tenho me dedicado a aprender e aprimorar minhas habilidades em diferentes linguagens e tecnologias desde que comecei a estudar há 2 anos. Atualmente estou cursando Bacharelado em Ciência da Computação no Centro Universitário de João Pessoa.
+                                Olá, meu nome é <span className="font-semibold text-darkPastelViolet">João Pedro</span> e tenho me dedicado a aprender e aprimorar minhas habilidades em diferentes linguagens e tecnologias desde que comecei a estudar há 2 anos. Atualmente estou cursando Bacharelado em Ciência da Computação na faculdade CESAR SCHOOL, no centro do Recife Pernambuco.
                             </p>
                             <p className="text-justify font-normal mb-3">
                                 Minha experiência profissional inclui trabalhos em projetos de desenvolvimento web usando ferramentas como: React.js, node.js, express.js, Next.js, python, fastAPI, mongoDB e firebase. Eu também tenho conhecimento em metodologias ágeis e práticas de desenvolvimento, o que me permite trabalhar em equipe de forma eficaz e eficiente.
