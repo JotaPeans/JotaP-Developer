@@ -28,6 +28,7 @@ import photo1 from "./assets/images/photo1.png";
 import photo2 from "./assets/images/photo2.png";
 import lavateriapay from "./assets/images/lavateriapay.png";
 import daymessages from "./assets/images/DAY preview.png";
+import geddocs from "./assets/images/geddocs.webp";
 
 // components
 import NavLinks from "./assets/components/NavLinks";
@@ -200,6 +201,7 @@ const App = () => {
                     <main className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center mt-10">
                         <Project link="https://laundrypay.com.br" name="Laundry Pay" date="10 de Maio de 2023" imgSrc={lavateriapay} type="Freelancer"/>
                         <Project link="https://day-messages.vercel.app" name="Day Messages" date="25 de fevereiro de 2023" imgSrc={daymessages} type="Pessoal"/>
+                        <Project link="https://geddocs.com.br/" name="Geddocs" date="20 de janeiro de 2024" imgSrc={geddocs} type="Fundador"/>
                     </main>
                 </div>
             </section>
