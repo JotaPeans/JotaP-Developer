@@ -16,10 +16,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
 import { TfiMouse } from "react-icons/tfi";
 import { CgMenuGridO } from "react-icons/cg";
-import { BiCodeBlock } from "react-icons/bi";
-import { SlScreenDesktop } from "react-icons/sl";
-import { TbSettingsAutomation } from "react-icons/tb";
-import { DiTerminal } from "react-icons/di";
+// import { BiCodeBlock } from "react-icons/bi";
+// import { SlScreenDesktop } from "react-icons/sl";
+// import { TbSettingsAutomation } from "react-icons/tb";
+// import { DiTerminal } from "react-icons/di";
 import { TiArrowUpThick } from "react-icons/ti";
 import { BsSun, BsMoon } from "react-icons/bs";
 
@@ -32,7 +32,7 @@ import geddocs from "./assets/images/geddocs.webp";
 
 // components
 import NavLinks from "./assets/components/NavLinks";
-import Services from "./assets/components/Services";
+// import Services from "./assets/components/Services";
 import Certificate from "./assets/components/Certificate";
 import Project from "./assets/components/Project";
 import Contact from "./assets/components/Contact";
@@ -42,7 +42,7 @@ import Tec from "./assets/components/Tec";
 const App = () => {
     const [ nav, setNav ] = useState(false);
     const [ text, setText ] = useState("");
-    const [ activeSection, setActiveSection ] = useState<"home" | "about" | "certificados" | "servicos" | "projetos" | "contato">("home");
+    const [ activeSection, setActiveSection ] = useState<"home" | "about" | "certificados" | "tecnologias" | "projetos" | "contato">("home");
     const [ buttonToTop, setButtonToTop ] = useState(false);
     const [ mode, setMode ] = useState<"dark" | "light">("dark")
 
@@ -145,7 +145,7 @@ const App = () => {
                 </div>
             </section>
 
-            <section id="servicos" className="flex flex-col md:items-center gap-8 mt-10 p-2">
+            {/* <section id="servicos" className="flex flex-col md:items-center gap-8 mt-10 p-2">
                 <div className=" xl:w-[60%]">
                     <header className="relative flex items-center">
                         <CgMenuGridO className="text-5xl text-gray-500/30"/>
@@ -171,6 +171,25 @@ const App = () => {
                             ))}
                         </div>
                     </main>
+                </div>
+            </section> */}
+
+            <section id="tecnologias" className="flex flex-col md:items-center gap-8 mt-10 p-2">
+                <div className=" xl:w-[60%]">
+                    <header className="relative flex items-center">
+                        <CgMenuGridO className="text-5xl text-gray-500/30"/>
+                        <h1 className="absolute left-5 top-4 font-semibold text-4xl">Tecnologias</h1>
+                    </header>
+                    
+                    <div className=" w-[90%] sm:w-full flex justify-center items-center flex-wrap gap-8 mt-8 dark:bg-darkPastelViolet/40 bg-zinc-100 p-5 rounded-3xl">
+                        {tecs.map((item, index) => (
+                            <Tec 
+                                key={index} 
+                                title={item.title} 
+                                icon={item.title === "Next.js" ? <i className={item.icon}/> : <img src={item.icon} alt={item.title}/>}
+                            />
+                        ))}
+                    </div>
                 </div>
             </section>
 

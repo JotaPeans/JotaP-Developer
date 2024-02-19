@@ -3,8 +3,8 @@ import { Link } from "react-scroll";
 interface NavLinksProps {
     nav: boolean
     setNav: React.Dispatch<React.SetStateAction<boolean>>,
-    activeSection: "home" | "about" | "certificados" | "servicos" | "projetos" | "contato"
-    setActiveSection: React.Dispatch<React.SetStateAction<"home" | "about" | "certificados" | "servicos" | "projetos" | "contato">>
+    activeSection: "home" | "about" | "certificados" | "tecnologias" | "projetos" | "contato"
+    setActiveSection: React.Dispatch<React.SetStateAction<"home" | "about" | "certificados" | "tecnologias" | "projetos" | "contato">>
 }
 
 const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProps) => {
@@ -40,15 +40,15 @@ const NavLinks = ({ nav, setNav, activeSection, setActiveSection }: NavLinksProp
             <Link
                 onClick={() => {
                     setNav(!nav);
-                    setActiveSection("servicos");
+                    setActiveSection("tecnologias");
                 }}
                 offset={-80}
-                to="servicos"
+                to="tecnologias"
                 smooth={true}
                 duration={500}
-                className={`cursor-pointer ${activeSection === "servicos" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
+                className={`cursor-pointer ${activeSection === "tecnologias" ? "dark:text-pastelYellow text-indigo-500" : "dark:text-white"} hover:dark:text-pastelYellow transition-all font-semibold`}
             >
-                Serviços
+                Tecnologias
             </Link>
             
             <Link
